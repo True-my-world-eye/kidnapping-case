@@ -1,0 +1,8 @@
+﻿file,field,description,source
+employee_nodes.csv,employee_id,员工节点唯一ID，基于姓名标准化,EmployeeRecords.xlsx
+employee_nodes.csv,reports_to,根据组织架构图和职位推断的上级,GAStechKronos-org-chart.pdf
+network_nodes.csv,node_type,节点类型：person/organization/department/media/location/event,mixed
+network_edges.csv,relation_type,边关系类型：employed_by/reports_to/email_communication/official_cooperation/opposition等,mixed
+media_stance.csv,stance_score_0_pro_gov_gastech_10_pro_pok,媒体立场初版评分，0代表亲政府/GAStech，10代表亲POK/反政府,sources.csv + bias_cases.csv + 整理文档
+bias_case_coded.csv,bias_type,从偏见案例文字归纳出的偏见类型标签,bias_cases.csv
+timeline_master.csv,narrative_lines,叙事线编码：1商业利益线，2环境冲突线，3组织对抗线，4绑架导火索线,README_数据整理.md

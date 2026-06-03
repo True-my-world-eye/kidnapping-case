@@ -1,0 +1,8 @@
+﻿item,value,expected_or_note
+articles_structured_count,845,正式口径：845
+email_headers_count,1175,正式口径：1175
+media_source_count,29,正式口径：29
+employee_record_count,54,来自EmployeeRecords.xlsx
+APA_split,done,Asterian_Peoples_Army 与 Abila_Police 已拆分
+media_stance_review,needs_manual_review,部分媒体评分为初版估计
+missing_employee_list,partial,完整14人名单需进一步证据确认；当前只标注leadership group

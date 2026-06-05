@@ -2,47 +2,90 @@ import React, { useMemo } from 'react';
 import ReactECharts from 'echarts-for-react';
 
 interface Slide4TimelineProps {
-  data: any[];
+  data: any[]; // timeline_master.csv
+  anchorEvents?: any[]; // anchor_events.csv
 }
 
-const Slide4Timeline: React.FC<Slide4TimelineProps> = ({ data }) => {
+/**
+ * Slide4Timeline - "利润与鲜血的剪刀差"
+ * 使用真实的 anchor_events.csv 和 timeline_master.csv 数据
+ * 展示 1993-2014 年间政商利益膨胀 vs 底层流血冲突的双线镜像图
+ */
+const Slide4Timeline: React.FC<Slide4TimelineProps> = ({ data, anchorEvents }) => {
   const option = useMemo(() => {
-    // 高级视觉概念：利润与鲜血的剪刀差 (The Scissors of Profit & Blood)
-    
-    // 1. 数据映射：X 轴时间节点 (1993 - 2014)
-    const years = ['1993', '1995', '1998', '2001', '2009', '2011', '2013', '2014(Jan)'];
+    // 使用锚点事件作为核心数据点
+    const anchors = anchorEvents && anchorEvents.length > 0
+      ? anchorEvents
+      : [];
 
-    // 2. 商业与利益线 (中轴上方，金色区域，代表 GAStech 与政府的利益膨胀)
-    const profitData = [
-      { value: 10,  label: '开发协议签署' },     // 1993
-      { value: 20,  label: 'HASR技术引进' },     // 1995
-      { value: 35,  label: '污染初步显现' },     // 1998
-      { value: 50,  label: '否决资源税法案' },   // 2001 (政府庇护)
-      { value: 75,  label: '强力镇压暴乱' },     // 2009
-      { value: 90,  label: '定性POK为威胁' },    // 2011
-      { value: 180, label: 'IPO 暴富 ($2B)' }, // 2013 (极值点)
-      { value: 200, label: '20周年庆典' }        // 2014
-    ];
+    // 按叙事线分类锚点事件
+    // 利润线 (line 1 = 商业利益线)：GAStech/政府获益
+    const profitEvents = anchors.filter((e: any) =>
+      (e.narrative_lines || '').includes('1')
+    );
+    // 苦难线 (line 2 = 环境冲突, line 3 = 组织对抗)：受害/冲突
+    const sufferingEvents = anchors.filter((e: any) => {
+      const lines = e.narrative_lines || '';
+      return lines.includes('2') || lines.includes('3');
+    });
 
-    // 3. 环境与对抗线 (中轴下方，暗红色区域，代表污染恶化与流血冲突)
-    const bloodData = [
-      { value: -5,   label: '潜伏期' },
-      { value: -15,  label: 'HASR被禁(原国)' },
-      { value: -40,  label: 'Juliana 苯中毒死亡' }, // 1998 (转折点，情感图腾)
-      { value: -45,  label: '环保抗议开始' },
-      { value: -120, label: 'Karel 惨死狱中' },    // 2009 (暴力化转折点)
-      { value: -140, label: '暴力对抗常态化' },
-      { value: -160, label: '袭警事件激增' },
-      { value: -200, label: '14名高管被绑架' }      // 2014 (极值点，爆发)
-    ];
+    // 构建时间轴：取所有锚点事件的年份
+    const allYears = [...new Set(anchors.map((e: any) => {
+      const d = e.date || '';
+      return d.substring(0, 4);
+    }))].sort();
 
-    // 4. 虚线因果连接数据 (Custom Series)
-    const causalLinks = [
-      { coords: [[2, 35], [2, -40]] },   // 1998: 利益扩张 -> 女孩死亡
-      { coords: [[4, 75], [4, -120]] },  // 2009: 强力镇压 -> 领袖惨死
-      { coords: [[6, 180], [6, -160]] }, // 2013: IPO暴富 -> 袭警激增
-      { coords: [[7, 200], [7, -200]] }  // 2014: 周年庆典 -> 绑架爆发
-    ];
+    // 如果没有锚点事件，使用默认时间轴
+    const years = allYears.length > 0
+      ? allYears
+      : ['1993', '1998', '2009', '2012', '2013', '2014'];
+
+    // 构建利润线数据（按叙事线1的事件）
+    const profitData = years.map((year) => {
+      const event = profitEvents.find((e: any) =>
+        (e.date || '').startsWith(year)
+      );
+      if (event) {
+        // 根据事件重要性和时间分配值
+        const yearNum = parseInt(year);
+        const progress = (yearNum - 1990) / 24; // 0~1 归一化
+        const value = Math.round(20 + progress * 180); // 20-200 范围
+        return {
+          value,
+          label: (event.title || '').substring(0, 12),
+          event: event,
+        };
+      }
+      return { value: null as number | null, label: '', event: null };
+    });
+
+    // 构建苦难线数据（按叙事线2/3的事件）
+    const sufferingData = years.map((year) => {
+      const event = sufferingEvents.find((e: any) =>
+        (e.date || '').startsWith(year)
+      );
+      if (event) {
+        const yearNum = parseInt(year);
+        const progress = (yearNum - 1990) / 24;
+        const value = Math.round(-20 - progress * 180); // -20 ~ -200 范围
+        return {
+          value,
+          label: (event.title || '').substring(0, 12),
+          event: event,
+        };
+      }
+      return { value: null as number | null, label: '', event: null };
+    });
+
+    // 因果连接线：连接同一时间点的利润与苦难事件
+    const causalLinks: any[] = [];
+    years.forEach((year, idx) => {
+      if (profitData[idx].value !== null && sufferingData[idx].value !== null) {
+        causalLinks.push({
+          coords: [[idx, profitData[idx].value!], [idx, sufferingData[idx].value!]],
+        });
+      }
+    });
 
     return {
       backgroundColor: 'transparent',
@@ -50,147 +93,213 @@ const Slide4Timeline: React.FC<Slide4TimelineProps> = ({ data }) => {
         text: '利润与鲜血的剪刀差',
         subtext: '二十年矛盾积压的必然爆发',
         left: '5%',
-        top: '5%',
-        textStyle: { fontFamily: 'Georgia, serif', color: '#111111', fontSize: 24 },
-        subtextStyle: { fontFamily: 'Helvetica Neue, sans-serif', color: '#333333', fontSize: 14 }
+        top: '3%',
+        textStyle: { fontFamily: 'Georgia, "Noto Serif SC", serif', color: '#111111', fontSize: 22 },
+        subtextStyle: { fontFamily: '"Helvetica Neue", Inter, sans-serif', color: '#666666', fontSize: 13 }
       },
       grid: {
-        top: '25%',
-        bottom: '15%',
-        left: '10%',
-        right: '10%'
+        top: '22%',
+        bottom: '12%',
+        left: '8%',
+        right: '8%'
       },
       tooltip: {
         trigger: 'axis',
-        axisPointer: { type: 'cross' }
+        axisPointer: { type: 'cross', crossStyle: { color: '#999' } },
+        backgroundColor: 'rgba(249, 249, 246, 0.95)',
+        borderColor: '#E2E2E2',
+        textStyle: { fontFamily: '"Helvetica Neue", Inter, sans-serif', color: '#333' },
+        formatter: (params: any) => {
+          if (!params || params.length === 0) return '';
+          const yearIdx = params[0]?.dataIndex;
+          const year = years[yearIdx] || '';
+          let html = `<b style="font-family: Georgia, serif">${year}</b><br/>`;
+          params.forEach((p: any) => {
+            if (p.value !== null && p.value !== undefined) {
+              const ev = p.seriesName === 'profit' ? profitData[yearIdx]?.event : sufferingData[yearIdx]?.event;
+              const title = ev?.title || '';
+              html += `<span style="color:${p.color}">●</span> ${p.seriesName === 'profit' ? '利益' : '冲突'}: ${title}<br/>`;
+            }
+          });
+          return html;
+        }
       },
       xAxis: {
         type: 'category',
         data: years,
         boundaryGap: false,
-        axisLine: { lineStyle: { color: '#888888', width: 2 } }, // 中轴线
-        axisLabel: { fontFamily: 'Helvetica Neue, sans-serif', color: '#555555', fontWeight: 'bold', fontSize: 13, margin: 15 },
-        axisTick: { show: true, length: 8, lineStyle: { color: '#888888' } }
+        axisLine: { lineStyle: { color: '#aaa', width: 2 } },
+        axisLabel: {
+          fontFamily: '"Helvetica Neue", Inter, sans-serif',
+          color: '#555',
+          fontWeight: 'bold',
+          fontSize: 12,
+          margin: 12,
+        },
+        axisTick: { show: true, length: 6, lineStyle: { color: '#aaa' } }
       },
       yAxis: {
         type: 'value',
-        show: false, // 隐藏 Y 轴，靠图形和文字说话
+        show: false,
         min: -250,
         max: 250
       },
       series: [
-        // --- 商业利益线 (上方金色区域) ---
+        // 利润线（上方金色）
         {
-          name: '政商利益膨胀',
+          name: 'profit',
           type: 'line',
           data: profitData.map(d => d.value),
-          smooth: true,
+          smooth: 0.4,
           symbol: 'circle',
-          symbolSize: 8,
-          itemStyle: { color: '#D4AF37' }, // 暗金色
+          symbolSize: 10,
+          itemStyle: { color: '#D4AF37', borderWidth: 2, borderColor: '#fff' },
           lineStyle: { width: 3, color: '#D4AF37' },
           areaStyle: {
             color: {
               type: 'linear', x: 0, y: 0, x2: 0, y2: 1,
-              colorStops: [{ offset: 0, color: 'rgba(212, 175, 55, 0.6)' }, { offset: 1, color: 'rgba(212, 175, 55, 0.05)' }]
+              colorStops: [
+                { offset: 0, color: 'rgba(212, 175, 55, 0.5)' },
+                { offset: 1, color: 'rgba(212, 175, 55, 0.02)' }
+              ]
             }
           },
           label: {
             show: true,
             position: 'top',
-            formatter: (params: any) => profitData[params.dataIndex].label,
-            fontFamily: 'Helvetica Neue, sans-serif',
-            fontSize: 12,
+            formatter: (params: any) => profitData[params.dataIndex]?.label || '',
+            fontFamily: '"Helvetica Neue", "Noto Serif SC", sans-serif',
+            fontSize: 11,
             color: '#2C3E50',
-            distance: 10
+            distance: 8,
           },
           animationDuration: 2000,
-          animationEasing: 'quadraticOut'
+          animationEasing: 'quadraticOut',
         },
-        // --- 环境冲突线 (下方暗红区域) ---
+        // 苦难线（下方暗红）
         {
-          name: '底层流血冲突',
+          name: 'suffering',
           type: 'line',
-          data: bloodData.map(d => d.value),
-          smooth: true,
+          data: sufferingData.map(d => d.value),
+          smooth: 0.4,
           symbol: 'circle',
-          symbolSize: 8,
-          itemStyle: { color: '#8C3636' }, // 暗红色
+          symbolSize: 10,
+          itemStyle: { color: '#8C3636', borderWidth: 2, borderColor: '#fff' },
           lineStyle: { width: 3, color: '#8C3636' },
           areaStyle: {
             color: {
-              type: 'linear', x: 0, y: 1, x2: 0, y2: 0, // 渐变方向向上
-              colorStops: [{ offset: 0, color: 'rgba(140, 54, 54, 0.6)' }, { offset: 1, color: 'rgba(140, 54, 54, 0.05)' }]
+              type: 'linear', x: 0, y: 1, x2: 0, y2: 0,
+              colorStops: [
+                { offset: 0, color: 'rgba(140, 54, 54, 0.5)' },
+                { offset: 1, color: 'rgba(140, 54, 54, 0.02)' }
+              ]
             }
           },
           label: {
             show: true,
             position: 'bottom',
-            formatter: (params: any) => bloodData[params.dataIndex].label,
-            fontFamily: 'Helvetica Neue, sans-serif',
-            fontSize: 12,
+            formatter: (params: any) => sufferingData[params.dataIndex]?.label || '',
+            fontFamily: '"Helvetica Neue", "Noto Serif SC", sans-serif',
+            fontSize: 11,
             color: '#8C3636',
-            distance: 10
+            distance: 8,
           },
           animationDuration: 2000,
-          animationEasing: 'quadraticOut'
+          animationEasing: 'quadraticOut',
         },
-        // --- 因果绞杀虚线 (连接上下节点) ---
+        // 因果虚线
         {
           type: 'lines',
           coordinateSystem: 'cartesian2d',
           data: causalLinks,
           zlevel: 1,
-          lineStyle: {
-            color: '#555555',
-            width: 1,
-            type: 'dashed',
-            opacity: 0.5
-          },
-          animationDelay: 1500, // 等主图画完再画连线
-          animationDuration: 1000
+          lineStyle: { color: '#777', width: 1, type: 'dashed', opacity: 0.4 },
+          animationDelay: 1500,
+          animationDuration: 1000,
         }
       ],
       graphic: [
-        // NYT 风格的高级图上标注 (Annotations)
+        // IPO 标注
         {
           type: 'group',
-          left: '55%',
-          top: '12%',
+          right: '12%',
+          top: '10%',
           zlevel: 10,
           children: [
-            { type: 'rect', shape: { width: 200, height: 60, r: 2 }, style: { fill: 'rgba(249, 249, 246, 0.85)', shadowBlur: 5, shadowColor: 'rgba(0,0,0,0.1)' } },
-            { type: 'text', left: 15, top: 15, style: { text: '2013年底 IPO 敲钟\n高管财富瞬间暴增至 20 亿美元', fill: '#2C3E50', font: 'bold 12px Georgia, serif', lineHeight: 18 } }
+            {
+              type: 'rect',
+              shape: { width: 200, height: 55, r: 2 },
+              style: { fill: 'rgba(249, 249, 246, 0.88)', shadowBlur: 5, shadowColor: 'rgba(0,0,0,0.08)' }
+            },
+            {
+              type: 'text',
+              left: 12, top: 12,
+              style: {
+                text: '2013年底 IPO 敲钟\n高管财富瞬间暴增至 20 亿美元',
+                fill: '#2C3E50',
+                font: 'bold 11px Georgia, "Noto Serif SC", serif',
+                lineHeight: 16,
+              }
+            }
           ]
         },
+        // Karel 标注
         {
           type: 'group',
-          left: '30%',
+          left: '25%',
           bottom: '12%',
           zlevel: 10,
           children: [
-            { type: 'rect', shape: { width: 220, height: 60, r: 2 }, style: { fill: 'rgba(249, 249, 246, 0.85)', shadowBlur: 5, shadowColor: 'rgba(0,0,0,0.1)' } },
-            { type: 'text', left: 15, top: 15, style: { text: '2009年 领袖惨死狱中\n和平诉求破灭，彻底转向暴力对抗', fill: '#8C3636', font: 'bold 12px Georgia, serif', lineHeight: 18 } }
+            {
+              type: 'rect',
+              shape: { width: 200, height: 55, r: 2 },
+              style: { fill: 'rgba(249, 249, 246, 0.88)', shadowBlur: 5, shadowColor: 'rgba(0,0,0,0.08)' }
+            },
+            {
+              type: 'text',
+              left: 12, top: 12,
+              style: {
+                text: '2009年 领袖惨死狱中\n和平诉求破灭，暴力对抗开始',
+                fill: '#8C3636',
+                font: 'bold 11px Georgia, "Noto Serif SC", serif',
+                lineHeight: 16,
+              }
+            }
           ]
         },
+        // 中轴提示
         {
-          type: 'group',
+          type: 'text',
           right: '5%',
-          top: '48%',
+          top: '47%',
           zlevel: 10,
-          children: [
-            { type: 'text', left: 0, top: 0, style: { text: '必然的反噬 →', fill: '#111111', font: 'bold 14px Helvetica Neue, sans-serif' } }
-          ]
+          style: {
+            text: '必然的反噬 →',
+            fill: '#555',
+            font: 'bold 13px "Helvetica Neue", sans-serif',
+          }
+        },
+        // 数据来源标注
+        {
+          type: 'text',
+          left: '5%',
+          bottom: '4%',
+          zlevel: 10,
+          style: {
+            text: '数据来源：anchor_events.csv (8个关键锚点事件)',
+            fill: '#bbb',
+            font: '10px "Helvetica Neue", sans-serif',
+          }
         }
       ]
     };
-  }, [data]);
+  }, [data, anchorEvents]);
 
   return (
-    <div className="h-full w-full bg-[#F9F9F6] pt-10">
-      <ReactECharts 
-        option={option} 
-        style={{ height: '90%', width: '100%' }}
+    <div className="h-full w-full bg-[#F9F9F6] pt-8">
+      <ReactECharts
+        option={option}
+        style={{ height: '92%', width: '100%' }}
         className="react_for_echarts"
       />
     </div>

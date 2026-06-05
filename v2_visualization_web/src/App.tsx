@@ -5,7 +5,7 @@ import { loadAllData } from './data/dataLoader';
 // Components
 import Slide1Cover from './components/Charts/Slide1Cover';
 import Slide2Overview from './components/Charts/Slide2Overview';
-import Slide3MediaBias from './components/Charts/Slide3MediaBias';
+import Slide3InkDrop from './components/Charts/Slide3InkDrop';
 import Slide4Timeline from './components/Charts/Slide4Timeline';
 import Slide5Network from './components/Charts/Slide5Network';
 import Slide6Collapse from './components/Charts/Slide6Collapse';
@@ -94,8 +94,38 @@ function App() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-nyt-paper flex items-center justify-center font-serif text-nyt-title text-2xl">
-        Loading Investigation Archives...
+      <div className="min-h-screen bg-[#111111] flex flex-col items-center justify-center text-[#F9F9F6]">
+        {/* 打字机效果的加载动画 */}
+        <div className="mb-8">
+          <svg width="60" height="60" viewBox="0 0 60 60" className="animate-spin" style={{ animationDuration: '3s' }}>
+            <circle cx="30" cy="30" r="25" fill="none" stroke="#D4C4A8" strokeWidth="1" opacity="0.3" />
+            <circle cx="30" cy="30" r="25" fill="none" stroke="#8C3636" strokeWidth="2"
+              strokeDasharray="40 120" strokeLinecap="round" />
+          </svg>
+        </div>
+        <div className="text-lg tracking-[0.3em] uppercase font-serif mb-3 animate-pulse">
+          Decrypting Investigation Archives
+        </div>
+        <div className="text-sm text-[#D4C4A8]/60 font-sans">
+          正在解密调查档案...
+        </div>
+        <div className="mt-8 flex gap-1">
+          {[0, 1, 2, 3, 4].map((i) => (
+            <div
+              key={i}
+              className="w-1 h-1 rounded-full bg-[#8C3636]"
+              style={{
+                animation: `loadingDot 1.4s ease-in-out ${i * 0.2}s infinite`,
+              }}
+            />
+          ))}
+        </div>
+        <style>{`
+          @keyframes loadingDot {
+            0%, 80%, 100% { opacity: 0.2; transform: scale(1); }
+            40% { opacity: 1; transform: scale(1.5); }
+          }
+        `}</style>
       </div>
     );
   }
@@ -105,8 +135,8 @@ function App() {
     switch (currentStepIndex) {
       case 0: return <Slide1Cover />;
       case 1: return <Slide2Overview />;
-      case 2: return <Slide3MediaBias data={appData?.mediaStance} />;
-      case 3: return <Slide4Timeline data={appData?.timelineMaster} />;
+      case 2: return <Slide3InkDrop />;
+      case 3: return <Slide4Timeline data={appData?.timelineMaster} anchorEvents={appData?.anchorEvents} />;
       case 4: return <Slide5Network nodesData={appData?.networkNodes} edgesData={appData?.networkEdges} />;
       case 5: return <Slide6Collapse nodesData={appData?.networkNodes} edgesData={appData?.networkEdges} /> ;
       case 6: return <Slide6Heatmap data={appData?.emails} />;

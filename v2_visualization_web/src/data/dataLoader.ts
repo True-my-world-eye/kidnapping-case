@@ -30,14 +30,16 @@ export const loadAllData = async () => {
     emailNetwork,
     networkNodes,
     networkEdges,
-    timelineMaster
+    timelineMaster,
+    emails
   ] = await Promise.all([
     loadCsvData('/data/anchor_events.csv'),
     loadCsvData('/data/media_stance.csv'),
     loadCsvData('/data/email_network.csv'),
     loadCsvData('/data/network_nodes.csv'),
     loadCsvData('/data/network_edges.csv'),
-    loadCsvData('/data/timeline_master.csv')
+    loadCsvData('/data/timeline_master.csv'),
+    loadCsvData('/data/emails.csv')
   ]);
 
   return {
@@ -46,6 +48,7 @@ export const loadAllData = async () => {
     emailNetwork,
     networkNodes,
     networkEdges,
-    timelineMaster
+    timelineMaster,
+    emails
   };
 };

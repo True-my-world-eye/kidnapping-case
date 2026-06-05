@@ -1,0 +1,454 @@
+{
+  "antiPOK_words": [
+    {
+      "word": "guards",
+      "count": 56,
+      "gov_count": 31,
+      "pok_count": 17,
+      "bias_ratio": 0.554,
+      "sentiment": "conviction"
+    },
+    {
+      "word": "kidnapping",
+      "count": 49,
+      "gov_count": 23,
+      "pok_count": 7,
+      "bias_ratio": 0.469,
+      "sentiment": "conviction"
+    },
+    {
+      "word": "death",
+      "count": 43,
+      "gov_count": 14,
+      "pok_count": 7,
+      "bias_ratio": 0.326,
+      "sentiment": "conviction"
+    },
+    {
+      "word": "violent",
+      "count": 39,
+      "gov_count": 20,
+      "pok_count": 3,
+      "bias_ratio": 0.513,
+      "sentiment": "conviction"
+    },
+    {
+      "word": "threat",
+      "count": 32,
+      "gov_count": 19,
+      "pok_count": 3,
+      "bias_ratio": 0.594,
+      "sentiment": "conviction"
+    },
+    {
+      "word": "attack",
+      "count": 26,
+      "gov_count": 12,
+      "pok_count": 6,
+      "bias_ratio": 0.462,
+      "sentiment": "conviction"
+    },
+    {
+      "word": "terrorist",
+      "count": 26,
+      "gov_count": 12,
+      "pok_count": 2,
+      "bias_ratio": 0.462,
+      "sentiment": "conviction"
+    },
+    {
+      "word": "kidnapped",
+      "count": 26,
+      "gov_count": 12,
+      "pok_count": 3,
+      "bias_ratio": 0.462,
+      "sentiment": "conviction"
+    },
+    {
+      "word": "violence",
+      "count": 22,
+      "gov_count": 13,
+      "pok_count": 1,
+      "bias_ratio": 0.591,
+      "sentiment": "conviction"
+    },
+    {
+      "word": "criminals",
+      "count": 14,
+      "gov_count": 12,
+      "pok_count": 0,
+      "bias_ratio": 0.857,
+      "sentiment": "conviction"
+    },
+    {
+      "word": "investigation",
+      "count": 13,
+      "gov_count": 6,
+      "pok_count": 2,
+      "bias_ratio": 0.462,
+      "sentiment": "conviction"
+    },
+    {
+      "word": "security",
+      "count": 12,
+      "gov_count": 6,
+      "pok_count": 0,
+      "bias_ratio": 0.5,
+      "sentiment": "conviction"
+    },
+    {
+      "word": "assault",
+      "count": 12,
+      "gov_count": 7,
+      "pok_count": 0,
+      "bias_ratio": 0.583,
+      "sentiment": "conviction"
+    },
+    {
+      "word": "patrol",
+      "count": 12,
+      "gov_count": 10,
+      "pok_count": 0,
+      "bias_ratio": 0.833,
+      "sentiment": "conviction"
+    },
+    {
+      "word": "bomb",
+      "count": 11,
+      "gov_count": 6,
+      "pok_count": 3,
+      "bias_ratio": 0.545,
+      "sentiment": "conviction"
+    },
+    {
+      "word": "custody",
+      "count": 8,
+      "gov_count": 3,
+      "pok_count": 0,
+      "bias_ratio": 0.375,
+      "sentiment": "conviction"
+    },
+    {
+      "word": "trespassing",
+      "count": 6,
+      "gov_count": 3,
+      "pok_count": 0,
+      "bias_ratio": 0.5,
+      "sentiment": "conviction"
+    },
+    {
+      "word": "thugs",
+      "count": 6,
+      "gov_count": 4,
+      "pok_count": 0,
+      "bias_ratio": 0.667,
+      "sentiment": "conviction"
+    },
+    {
+      "word": "radical",
+      "count": 6,
+      "gov_count": 4,
+      "pok_count": 0,
+      "bias_ratio": 0.667,
+      "sentiment": "conviction"
+    },
+    {
+      "word": "malcontents",
+      "count": 5,
+      "gov_count": 4,
+      "pok_count": 0,
+      "bias_ratio": 0.8,
+      "sentiment": "conviction"
+    },
+    {
+      "word": "pestilence",
+      "count": 5,
+      "gov_count": 4,
+      "pok_count": 0,
+      "bias_ratio": 0.8,
+      "sentiment": "conviction"
+    },
+    {
+      "word": "gastech",
+      "count": 672,
+      "gov_count": 338,
+      "pok_count": 112,
+      "bias_ratio": 0.503,
+      "sentiment": "neutral"
+    },
+    {
+      "word": "pok",
+      "count": 304,
+      "gov_count": 161,
+      "pok_count": 48,
+      "bias_ratio": 0.53,
+      "sentiment": "neutral"
+    },
+    {
+      "word": "government",
+      "count": 293,
+      "gov_count": 109,
+      "pok_count": 68,
+      "bias_ratio": 0.372,
+      "sentiment": "neutral"
+    },
+    {
+      "word": "abila",
+      "count": 284,
+      "gov_count": 146,
+      "pok_count": 36,
+      "bias_ratio": 0.514,
+      "sentiment": "neutral"
+    },
+    {
+      "word": "police",
+      "count": 229,
+      "gov_count": 144,
+      "pok_count": 20,
+      "bias_ratio": 0.629,
+      "sentiment": "neutral"
+    },
+    {
+      "word": "gas",
+      "count": 141,
+      "gov_count": 76,
+      "pok_count": 16,
+      "bias_ratio": 0.539,
+      "sentiment": "neutral"
+    },
+    {
+      "word": "today",
+      "count": 141,
+      "gov_count": 85,
+      "pok_count": 17,
+      "bias_ratio": 0.603,
+      "sentiment": "neutral"
+    },
+    {
+      "word": "president",
+      "count": 136,
+      "gov_count": 63,
+      "pok_count": 23,
+      "bias_ratio": 0.463,
+      "sentiment": "neutral"
+    },
+    {
+      "word": "karel",
+      "count": 135,
+      "gov_count": 57,
+      "pok_count": 34,
+      "bias_ratio": 0.422,
+      "sentiment": "neutral"
+    },
+    {
+      "word": "headquarters",
+      "count": 124,
+      "gov_count": 85,
+      "pok_count": 8,
+      "bias_ratio": 0.685,
+      "sentiment": "neutral"
+    }
+  ],
+  "proPOK_words": [
+    {
+      "word": "citizens",
+      "count": 34,
+      "gov_count": 9,
+      "pok_count": 14,
+      "bias_ratio": 0.412,
+      "sentiment": "environment"
+    },
+    {
+      "word": "community",
+      "count": 20,
+      "gov_count": 5,
+      "pok_count": 8,
+      "bias_ratio": 0.4,
+      "sentiment": "environment"
+    },
+    {
+      "word": "truth",
+      "count": 4,
+      "gov_count": 1,
+      "pok_count": 2,
+      "bias_ratio": 0.5,
+      "sentiment": "environment"
+    },
+    {
+      "word": "accountability",
+      "count": 3,
+      "gov_count": 0,
+      "pok_count": 2,
+      "bias_ratio": 0.667,
+      "sentiment": "environment"
+    },
+    {
+      "word": "elodis",
+      "count": 171,
+      "gov_count": 40,
+      "pok_count": 63,
+      "bias_ratio": 0.368,
+      "sentiment": "neutral"
+    },
+    {
+      "word": "three",
+      "count": 37,
+      "gov_count": 10,
+      "pok_count": 17,
+      "bias_ratio": 0.459,
+      "sentiment": "neutral"
+    },
+    {
+      "word": "wellness",
+      "count": 32,
+      "gov_count": 4,
+      "pok_count": 14,
+      "bias_ratio": 0.438,
+      "sentiment": "neutral"
+    },
+    {
+      "word": "charges",
+      "count": 30,
+      "gov_count": 7,
+      "pok_count": 11,
+      "bias_ratio": 0.367,
+      "sentiment": "neutral"
+    },
+    {
+      "word": "fact",
+      "count": 27,
+      "gov_count": 3,
+      "pok_count": 8,
+      "bias_ratio": 0.296,
+      "sentiment": "neutral"
+    }
+  ],
+  "total_articles": 845,
+  "source_breakdown": {
+    "pro_gov": 381,
+    "neutral": 297,
+    "pro_pok": 167
+  },
+  "curated_conviction_words": [
+    {
+      "word": "criminals",
+      "label": "罪犯",
+      "count": 120,
+      "tier": 1
+    },
+    {
+      "word": "terrorists",
+      "label": "恐怖分子",
+      "count": 95,
+      "tier": 1
+    },
+    {
+      "word": "kidnapping",
+      "label": "绑架",
+      "count": 140,
+      "tier": 1
+    },
+    {
+      "word": "thugs",
+      "label": "暴徒",
+      "count": 65,
+      "tier": 1
+    },
+    {
+      "word": "gangsters",
+      "label": "匪徒",
+      "count": 45,
+      "tier": 1
+    },
+    {
+      "word": "violence",
+      "label": "暴力",
+      "count": 110,
+      "tier": 1
+    },
+    {
+      "word": "plague",
+      "label": "瘟疫",
+      "count": 20,
+      "tier": 2
+    },
+    {
+      "word": "pestilence",
+      "label": "祸害",
+      "count": 12,
+      "tier": 2
+    },
+    {
+      "word": "malcontents",
+      "label": "不满分子",
+      "count": 18,
+      "tier": 2
+    },
+    {
+      "word": "dangerous",
+      "label": "危险",
+      "count": 55,
+      "tier": 2
+    },
+    {
+      "word": "security",
+      "label": "安全威胁",
+      "count": 85,
+      "tier": 2
+    },
+    {
+      "word": "trespassing",
+      "label": "非法侵入",
+      "count": 30,
+      "tier": 2
+    },
+    {
+      "word": "illegal",
+      "label": "非法",
+      "count": 42,
+      "tier": 2
+    },
+    {
+      "word": "arrested",
+      "label": "逮捕",
+      "count": 78,
+      "tier": 3
+    },
+    {
+      "word": "threat",
+      "label": "威胁",
+      "count": 60,
+      "tier": 3
+    },
+    {
+      "word": "extremists",
+      "label": "极端分子",
+      "count": 35,
+      "tier": 3
+    },
+    {
+      "word": "suspects",
+      "label": "嫌疑人",
+      "count": 50,
+      "tier": 3
+    },
+    {
+      "word": "hostage",
+      "label": "人质",
+      "count": 70,
+      "tier": 3
+    },
+    {
+      "word": "attack",
+      "label": "袭击",
+      "count": 88,
+      "tier": 3
+    },
+    {
+      "word": "weapons",
+      "label": "武器",
+      "count": 40,
+      "tier": 3
+    }
+  ]
+}

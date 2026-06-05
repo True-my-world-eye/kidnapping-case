@@ -21,8 +21,8 @@ export default {
         }
       },
       fontFamily: {
-        serif: ['Georgia', 'Playfair Display', 'serif'],
-        sans: ['Helvetica Neue', 'Inter', 'sans-serif'],
+        serif: ['"Playfair Display"', '"Noto Serif SC"', 'Georgia', 'serif'],
+        sans: ['"Helvetica Neue"', 'Inter', '"Noto Sans SC"', 'sans-serif'],
       }
     },
   },

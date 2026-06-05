@@ -22,3 +22,6 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Personal changelog (not for remote)
+CHANGELOG_zhw.md

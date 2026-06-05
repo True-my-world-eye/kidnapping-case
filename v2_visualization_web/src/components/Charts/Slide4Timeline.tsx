@@ -18,14 +18,14 @@ const Slide4Timeline: React.FC<Slide4TimelineProps> = ({ data, anchorEvents }) =
       ? anchorEvents
       : [];
 
-    // 按叙事线分类锚点事件
+    // 按叙事线分类锚点事件 (dynamicTyping可能将'1'转为number，需转回string)
     // 利润线 (line 1 = 商业利益线)：GAStech/政府获益
     const profitEvents = anchors.filter((e: any) =>
-      (e.narrative_lines || '').includes('1')
+      String(e.narrative_lines || '').includes('1')
     );
     // 苦难线 (line 2 = 环境冲突, line 3 = 组织对抗)：受害/冲突
     const sufferingEvents = anchors.filter((e: any) => {
-      const lines = e.narrative_lines || '';
+      const lines = String(e.narrative_lines || '');
       return lines.includes('2') || lines.includes('3');
     });
 

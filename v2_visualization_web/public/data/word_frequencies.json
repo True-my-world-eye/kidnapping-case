@@ -1,0 +1,172 @@
+{
+  "antiPOK_words": [
+    {
+      "word": "guards",
+      "count": 48,
+      "gov_count": 31,
+      "pok_count": 17,
+      "bias_ratio": 0.646,
+      "sentiment": "conviction"
+    },
+    {
+      "word": "kidnapping",
+      "count": 30,
+      "gov_count": 23,
+      "pok_count": 7,
+      "bias_ratio": 0.767,
+      "sentiment": "conviction"
+    },
+    {
+      "word": "violent",
+      "count": 23,
+      "gov_count": 20,
+      "pok_count": 3,
+      "bias_ratio": 0.87,
+      "sentiment": "conviction"
+    },
+    {
+      "word": "threat",
+      "count": 22,
+      "gov_count": 19,
+      "pok_count": 3,
+      "bias_ratio": 0.864,
+      "sentiment": "conviction"
+    },
+    {
+      "word": "death",
+      "count": 21,
+      "gov_count": 14,
+      "pok_count": 7,
+      "bias_ratio": 0.667,
+      "sentiment": "conviction"
+    },
+    {
+      "word": "attack",
+      "count": 18,
+      "gov_count": 12,
+      "pok_count": 6,
+      "bias_ratio": 0.667,
+      "sentiment": "conviction"
+    },
+    {
+      "word": "kidnapped",
+      "count": 15,
+      "gov_count": 12,
+      "pok_count": 3,
+      "bias_ratio": 0.8,
+      "sentiment": "conviction"
+    },
+    {
+      "word": "terrorist",
+      "count": 14,
+      "gov_count": 12,
+      "pok_count": 2,
+      "bias_ratio": 0.857,
+      "sentiment": "conviction"
+    },
+    {
+      "word": "violence",
+      "count": 14,
+      "gov_count": 13,
+      "pok_count": 1,
+      "bias_ratio": 0.929,
+      "sentiment": "conviction"
+    },
+    {
+      "word": "criminals",
+      "count": 12,
+      "gov_count": 12,
+      "pok_count": 0,
+      "bias_ratio": 1.0,
+      "sentiment": "conviction"
+    },
+    {
+      "word": "patrol",
+      "count": 10,
+      "gov_count": 10,
+      "pok_count": 0,
+      "bias_ratio": 1.0,
+      "sentiment": "conviction"
+    },
+    {
+      "word": "bomb",
+      "count": 9,
+      "gov_count": 6,
+      "pok_count": 3,
+      "bias_ratio": 0.667,
+      "sentiment": "conviction"
+    },
+    {
+      "word": "investigation",
+      "count": 8,
+      "gov_count": 6,
+      "pok_count": 2,
+      "bias_ratio": 0.75,
+      "sentiment": "conviction"
+    },
+    {
+      "word": "assault",
+      "count": 7,
+      "gov_count": 7,
+      "pok_count": 0,
+      "bias_ratio": 1.0,
+      "sentiment": "conviction"
+    },
+    {
+      "word": "security",
+      "count": 6,
+      "gov_count": 6,
+      "pok_count": 0,
+      "bias_ratio": 1.0,
+      "sentiment": "conviction"
+    },
+    {
+      "word": "ransom",
+      "count": 6,
+      "gov_count": 2,
+      "pok_count": 4,
+      "bias_ratio": 0.333,
+      "sentiment": "conviction"
+    },
+    {
+      "word": "thugs",
+      "count": 4,
+      "gov_count": 4,
+      "pok_count": 0,
+      "bias_ratio": 1.0,
+      "sentiment": "conviction"
+    },
+    {
+      "word": "radical",
+      "count": 4,
+      "gov_count": 4,
+      "pok_count": 0,
+      "bias_ratio": 1.0,
+      "sentiment": "conviction"
+    },
+    {
+      "word": "gang",
+      "count": 4,
+      "gov_count": 4,
+      "pok_count": 0,
+      "bias_ratio": 1.0,
+      "sentiment": "conviction"
+    },
+    {
+      "word": "custody",
+      "count": 3,
+      "gov_count": 3,
+      "pok_count": 0,
+      "bias_ratio": 1.0,
+      "sentiment": "conviction"
+    },
+    {
+      "word": "trespassing",
+      "count": 3,
+      "gov_count": 3,
+      "pok_count": 0,
+      "bias_ratio": 1.0,
+      "sentiment": "conviction"
+    }
+  ]
+}

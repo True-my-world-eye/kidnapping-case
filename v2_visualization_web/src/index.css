@@ -1,0 +1,23 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-nyt-paper text-nyt-text font-sans selection:bg-nyt-sand selection:text-nyt-title;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-serif text-nyt-title font-medium tracking-tight;
+  }
+}
+
+:root {
+  line-height: 1.6;
+  font-weight: 400;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
